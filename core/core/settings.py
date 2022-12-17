@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-a699l%iqez1+t6in)@9!ty8y-sw$kf5$xpo0f764dut=t1(=ag
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
 
 
 # Application definition
@@ -77,12 +77,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+DATABASES = {}
 
 
 # Password validation
@@ -129,6 +124,14 @@ DEBUG = False
 
 STATIC_URL = 'static/'
 
+STATIC_ROOT = "app-root/repo/wsgi/static"
+
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    ('assets', 'app-root/repo/wsgi/openshift/static'),
+
+    )
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
