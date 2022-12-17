@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-import dj_database_url
+# import dj_database_url
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -112,8 +113,8 @@ USE_TZ = True
 
 WHITENOISE_USE_FINDERS = True
 
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+# db_from_env = dj_database_url.config(conn_max_age=500)
+# DATABASES['default'].update(db_from_env)
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -124,14 +125,9 @@ DEBUG = False
 
 STATIC_URL = 'static/'
 
-STATIC_ROOT = "app-root/repo/wsgi/static"
-
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = (
-    ('assets', 'app-root/repo/wsgi/openshift/static'),
-
-    )
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+    
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
